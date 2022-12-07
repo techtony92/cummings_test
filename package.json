@@ -1,38 +1,114 @@
 {
-  "name": "cummings_test",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.14.1",
-    "@testing-library/react": "^13.0.0",
-    "@testing-library/user-event": "^13.2.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
-    "web-vitals": "^2.1.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+	"name": "cummings_test",
+	"version": "0.1.0",
+	"private": true,
+	"dependencies": {
+		"@babel/runtime-corejs3": "^7.17.8",
+		"@mantine/core": "^5.9.2",
+		"@mantine/hooks": "^5.9.2",
+		"ag-grid-react": "^28.2.1",
+		"react-icons": "^4.7.1",
+		"tslib": "^2.1.0",
+		"whatwg-fetch": "^3.6.2"
+	},
+	"peerDependencies": {
+		"react": "^16.14.0",
+		"react-dom": "^16.14.0"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.20.5",
+		"@babel/plugin-transform-runtime": "^7.17.0",
+		"@babel/preset-env": "^7.16.11",
+		"@babel/preset-react": "^7.16.7",
+		"@babel/preset-typescript": "^7.16.7",
+		"@emotion/react": "^11.10.5",
+		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.4",
+		"@storybook/addon-actions": "^6.5.14",
+		"@storybook/addon-essentials": "^6.5.14",
+		"@storybook/addon-links": "^6.5.14",
+		"@storybook/react": "^6.5.14",
+		"@testing-library/dom": "^8.13.0",
+		"@testing-library/jest-dom": "^5.16.2",
+		"@testing-library/react": "^12.1.3",
+		"@testing-library/user-event": "^14.1.1",
+		"@types/jest": "^28.1.6",
+		"@types/react": "^18.0.9",
+		"@types/react-dom": "^18.0.3",
+		"@typescript-eslint/eslint-plugin": "^5.12.1",
+		"@typescript-eslint/parser": "^5.12.1",
+		"ag-grid-community": "^28.2.1",
+		"babel-loader": "^8.2.3",
+		"css-loader": "^6.6.0",
+		"css-minimizer-webpack-plugin": "^4.0.0",
+		"eslint": "^8.9.0",
+		"eslint-config-prettier": "^8.4.0",
+		"eslint-plugin-jest-dom": "^4.0.1",
+		"eslint-plugin-react": "^7.28.0",
+		"eslint-plugin-react-hooks": "^4.3.0",
+		"eslint-plugin-testing-library": "^5.2.1",
+		"html-webpack-plugin": "^5.5.0",
+		"identity-obj-proxy": "^3.0.0",
+		"jest": "^28.1.0",
+		"jest-environment-jsdom": "^28.1.0",
+		"jest-sonar-reporter": "^2.0.0",
+		"mini-css-extract-plugin": "^2.6.0",
+		"path": "^0.12.7",
+		"postcss": "^8.4.19",
+		"prettier": "^2.5.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-is": "^18.2.0",
+		"react-refresh": "^0.14.0",
+		"require-from-string": "^2.0.2",
+		"sass": "^1.49.7",
+		"sass-loader": "^13.0.2",
+		"style-loader": "^3.3.1",
+		"stylelint": "^14.7.1",
+		"stylelint-config-prettier-scss": "^0.0.1",
+		"stylelint-config-standard-scss": "^5.0.0",
+		"typescript": "^4.5.5",
+		"webpack": "^5.75.0",
+		"webpack-cli": "^4.9.2",
+		"webpack-dev-server": "^4.7.4",
+		"webpack-merge": "^5.8.0"
+	},
+	"jestSonar": {
+		"reportPath": "coverage",
+		"reportFile": "test-reporter.xml",
+		"indent": 4
+	},
+	"scripts": {
+		"build": "webpack --config webpack.lib.js && tsc --emitDeclarationOnly",
+		"start": "webpack serve --config webpack.dev.js",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"stylelint": "stylelint **/*.scss",
+		"test": "jest",
+		"type-check": "tsc --noEmit",
+		"precommit": "yarn run test && yarn run type-check && yarn run lint && yarn run format",
+		"sonar": "yarn test --coverage --watchAll false --testResultsProcessor jest-sonar-reporter",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"version": "npm run format",
+		"storybook": "start-storybook -p 6006",
+		"build-storybook": "build-storybook"
+	},
+	"eslintConfig": {
+		"extends": [
+			"react-app",
+			"react-app/jest"
+		]
+	},
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	}
 }
